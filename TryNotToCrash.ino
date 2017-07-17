@@ -114,7 +114,8 @@ void loop()
     if(middleDistance<=50)
     {     
       _mHardStop();
-      delay(5);                         
+      delay(50);
+      _mStop();
       myservo.write(5);          
       delay(1000);      
       rightDistance = Distance_test();
