@@ -1,6 +1,3 @@
-//www.elegoo.com
-//2016.09.23
-
 #include <Servo.h> //servo library
 Servo myservo; // create servo object to control servo
 int Echo = A4;  
@@ -82,8 +79,8 @@ int Distance_test()
   delayMicroseconds(20);
   digitalWrite(Trig, LOW);   
   float Fdistance = pulseIn(Echo, HIGH);  
-  Fdistance= Fdistance /29 / 2;       
-  return (int)Fdistance;
+  Fdistance= Fdistance /29.0/ 2;       
+  return (float)Fdistance;
 }  
 
 void setup() 
@@ -111,11 +108,12 @@ void loop()
     Serial.println(middleDistance);
     #endif
 
-    if(middleDistance<=50)
+    if(middleDistance<=30)
     {     
       _mHardStop();
       delay(50);
       _mStop();
+      delay(500);
       myservo.write(5);          
       delay(1000);      
       rightDistance = Distance_test();
@@ -153,7 +151,7 @@ void loop()
        else if((rightDistance<=20)||(leftDistance<=20))
        {
         _mBack();
-        delay(10);
+        delay(50);
        }
        else
        {
@@ -163,4 +161,3 @@ void loop()
     else
         _mForward();                     
 }
-
